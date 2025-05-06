@@ -1,16 +1,15 @@
-from flask import Blueprint, render_template
+# application/bp/homepage/__init__.py
 
-from application.database import User
+from flask import Blueprint, render_template
+from flask_login import login_required, current_user
 
 bp_homepage = Blueprint('homepage', __name__, template_folder='templates')
-
 
 @bp_homepage.route('/')
 def homepage():
     return render_template('homepage.html')
 
-
-@bp_homepage.route('/about')
-def about():
-    return render_template('about.html')
-
+@bp_homepage.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html', user=current_user)

@@ -1,11 +1,17 @@
-{% extends "base.html" %}
-    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
-
+{% extends 'base.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
-
-<h1>Login Form</h1>
-
-    {{ render_form(form) }}
-
+  <h2>Login</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.email.label }} {{ form.email(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.password.label }} {{ form.password(class="form-control") }}
+    </div>
+    <div class="form-group mt-2">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
 {% endblock %}
